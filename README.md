@@ -80,8 +80,8 @@ Los resultados se consolidan en:
 
 Consulta:
 
-- `docs/informe_final.md`: Informe completo del proyecto
-- `slides/presentation.pptx`: Presentación final del equipo
+- `docs/informe_final.pdf`: Informe completo del proyecto
+- `slides/presentation.txt`: Presentación final del equipo
 
 ---
 
