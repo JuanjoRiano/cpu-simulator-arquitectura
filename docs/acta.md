@@ -40,8 +40,7 @@
 
 ## 📅 Reunión 3 — 13 de mayo
 
-**Asistentes:** Juan, Samuel, Gabriela  
-**Ausente:** Sergio (avisó con anticipación)  
+**Asistentes:** Todos
 **Temas tratados:**
 - Samuel integró forwarding en el pipeline.
 - Gabriela ya simula `read()`/`write()` en caché.
