@@ -1,0 +1,4 @@
+;ciclos;stalls;hits;misses
+programa1;2100;320;1780;220
+programa2;3400;600;1600;800
+programa ;4700;1200;2100;600
