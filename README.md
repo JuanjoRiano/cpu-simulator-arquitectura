@@ -21,7 +21,6 @@ cpu-simulator-arquitectura/
 ├── benchmarks/         # Scripts de prueba y resultados
 ├── docs/               # Documentación técnica e informes
 ├── slides/             # Presentación final
-├── run_pipeline.py     # Script principal de ejecución del simulador
 └── README.md           # Este archivo
 ```
 
