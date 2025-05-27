@@ -22,7 +22,6 @@ cpu-simulator-arquitectura/
 ├── docs/               # Documentación técnica e informes
 ├── slides/             # Presentación final
 ├── run_pipeline.py     # Script principal de ejecución del simulador
-├── requirements.txt    # Dependencias del proyecto
 └── README.md           # Este archivo
 ```
 
@@ -37,13 +36,7 @@ git clone https://github.com/JuanjoRiano/cpu-simulator-arquitectura.git
 cd cpu-simulator-arquitectura
 ```
 
-2. Instala las dependencias:
-
-```bash
-pip install -r requirements.txt
-```
-
-3. Ejecuta un programa de prueba:
+2. Ejecuta un programa de prueba:
 
 ```bash
 python run_pipeline.py benchmarks/program1.py
