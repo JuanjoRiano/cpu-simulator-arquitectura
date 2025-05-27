@@ -81,8 +81,6 @@ Los resultados se consolidan en:
 Consulta:
 
 - `docs/informe_final.md`: Informe completo del proyecto
-- `docs/README_cache_io.md`: Uso de caché y E/S
-- `docs/tablas_metricas.md`: Comparativas y análisis
 - `slides/presentation.pptx`: Presentación final del equipo
 
 ---
