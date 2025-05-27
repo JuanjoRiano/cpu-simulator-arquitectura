@@ -1,0 +1,83 @@
+# cache/cache.py
+import random
+import math
+
+class CacheLine:
+    def __init__(self):
+        self.valid = False
+        self.tag = None
+        self.data = None
+        self.dirty = False
+
+class Cache:
+    def __init__(self, line_count=64, block_size=4, associativity=1):
+        self.line_count = line_count
+        self.block_size = block_size
+        self.associativity = associativity
+        self.sets = line_count // associativity
+        self.cache = [[CacheLine() for _ in range(associativity)] for _ in range(self.sets)]
+
+        self.hits = 0
+        self.misses = 0
+        self.writebacks = 0
+
+    def _get_set_index_and_tag(self, address):
+        block_addr = address // self.block_size
+        set_index = block_addr % self.sets
+        tag = block_addr // self.sets
+        return set_index, tag
+
+    def read(self, address):
+        set_index, tag = self._get_set_index_and_tag(address)
+        cache_set = self.cache[set_index]
+
+        for line in cache_set:
+            if line.valid and line.tag == tag:
+                self.hits += 1
+                return line.data
+
+        self.misses += 1
+        self._replace_line(cache_set, tag, read=True)
+        return None
+
+    def write(self, address, data):
+        set_index, tag = self._get_set_index_and_tag(address)
+        cache_set = self.cache[set_index]
+
+        for line in cache_set:
+            if line.valid and line.tag == tag:
+                self.hits += 1
+                line.data = data
+                line.dirty = True
+                return
+
+        self.misses += 1
+        self._replace_line(cache_set, tag, read=False, data=data)
+
+    def _replace_line(self, cache_set, tag, read=True, data=None):
+        empty_line = next((line for line in cache_set if not line.valid), None)
+        line = empty_line if empty_line else random.choice(cache_set)
+
+        if line.valid and line.dirty:
+            self.writebacks += 1
+
+        line.valid = True
+        line.tag = tag
+        line.data = data if not read else None
+        line.dirty = not read
+
+    def stats(self):
+        return {
+            "hits": self.hits,
+            "misses": self.misses,
+            "writebacks": self.writebacks
+        }
+
+# --- Prueba directa ---
+if __name__ == "__main__":
+    cache = Cache(line_count=64, block_size=4, associativity=1)
+    print("Accediendo a direcciones 0x00, 0x04, 0x00...")
+    cache.read(0x00)
+    cache.read(0x04)
+    cache.read(0x00)
+    print("Estadísticas:", cache.stats())
